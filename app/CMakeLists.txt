@@ -16,3 +16,16 @@ include(zephyr_cmake_helpers_init)
 find_package(Zephyr)
 
 project(app C CXX ASM)
+
+target_sources(
+    app 
+    PRIVATE
+        src/main.cpp
+        src/info_indicator.cpp
+)
+
+target_include_directories(
+    app
+    PRIVATE
+        src
+)
