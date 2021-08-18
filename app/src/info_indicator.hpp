@@ -3,6 +3,8 @@
 #include <zephyr.h>
 #include <device.h>
 
+#include "utils/timeout_timer.hpp"
+
 namespace indication {
 
 /**
@@ -22,7 +24,7 @@ class InfoIndicator
  private:
     const device* _gpio_port;
 
-    k_timer _indication_timer;
+    utils::TimeoutTimer _indication_timer;
 };
 
 }  // namespace indication

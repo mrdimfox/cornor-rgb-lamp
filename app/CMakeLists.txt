@@ -22,6 +22,7 @@ target_sources(
     PRIVATE
         src/main.cpp
         src/info_indicator.cpp
+        src/utils/timeout_timer.cpp
 )
 
 target_include_directories(

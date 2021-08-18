@@ -16,7 +16,7 @@ void main(void)
     assert(device_is_ready(led_strip));
 
     patterns::RunningLeds<STRIP_NUM_PIXELS> running_leds(
-      led_strip, patterns::RunningLedsParams{.speed = 5});
+      led_strip, patterns::RunningLedsParams{.speed = 10});
 
     indication::InfoIndicator info_indicator;
 

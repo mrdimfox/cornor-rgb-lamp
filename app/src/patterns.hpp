@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include <zephyr.h>
 
+#include "utils/timeout_timer.hpp"
+
 namespace patterns {
 
 inline static constexpr std::array<led_rgb, 3> COLORS = {
@@ -59,7 +61,7 @@ class RunningLeds
     led_rgb* _cursor = _pixels.begin();
     const led_rgb* _current_color = COLORS.begin();
 
-    k_timer _running_timer;
+    utils::TimeoutTimer _running_timer;
 
     void _move_cursor();
     void _update_strip();
@@ -68,21 +70,19 @@ class RunningLeds
 
 template<size_t N>
 RunningLeds<N>::RunningLeds(const device* strip, RunningLedsParams param) :
-  _strip_dev(strip)
+  _strip_dev(strip),
+  _running_timer{K_MSEC(100), utils::TimeoutTimer::Params{.is_periodic = true}}
 {
-    k_timer_init(&_running_timer, NULL, NULL);
-
     const int64_t switch_state_period =
       1000 / std::clamp(param.speed, int64_t{1}, MAX_SPEED);
 
-    k_timer_start(&_running_timer, K_MSEC(switch_state_period),
-                  K_MSEC(switch_state_period));
+    _running_timer.start(K_MSEC(switch_state_period));
 }
 
 template<size_t N>
 void RunningLeds<N>::run()
 {
-    if (k_timer_status_get(&_running_timer) == 0) {
+    if (not _running_timer.is_timeout()) {
         return;
     }
 
@@ -113,4 +113,4 @@ void RunningLeds<N>::_update_strip()
     *_cursor = NO_COLOR;
 }
 
-}  // namespace light
+}  // namespace patterns
