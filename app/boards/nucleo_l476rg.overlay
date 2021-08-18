@@ -1,5 +1,28 @@
+#include <dt-bindings/led/led.h>
+
+&spi1 {
+    led_strip: ws2812@0 {
+        compatible = "worldsemi,ws2812-spi";
+        label = "WS2812";
+
+        /* SPI */
+        reg = <0>; /* ignored, but necessary for SPI bindings */
+        spi-max-frequency = <2500000>;
+
+        /* WS2812 */
+        chain-length = <45>;
+        spi-one-frame = <0xC>;
+        spi-zero-frame = <0x8>;
+    };
+};
+
+&green_led_2 {
+	status = "okay";
+};
+
 / {
     aliases {
+        led-strip = &led_strip;
         info-indicator-led = &green_led_2;
     };
 };
