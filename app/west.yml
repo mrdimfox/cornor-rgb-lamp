@@ -1,0 +1,33 @@
+manifest:
+  remotes:
+    - name: zephyrproject
+      url-base: https://github.com/zephyrproject-rtos
+
+    - name: thirdpin
+      url-base: https://github.com/thirdpin
+
+  # Please add items below based on alphabetical order
+  projects:
+    - name: Zephyr-CMake-Helpers
+      remote: thirdpin
+      revision: v1.1.0
+      path: modules/cmake-helpers
+
+    - name: cmsis
+      remote: zephyrproject
+      revision: master
+      path: modules/hal/cmsis
+
+    - name: hal_stm32
+      remote: zephyrproject
+      revision: master
+      path: modules/hal/stm32
+
+    - name: zephyr
+      remote: zephyrproject
+      revision: v2.6.0
+      path: zephyr
+      west-commands: scripts/west-commands.yml
+
+  self:
+    path: app

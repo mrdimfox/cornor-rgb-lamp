@@ -1,0 +1,11 @@
+app:
+  default: app
+  description: App configurations
+  choices:
+    app:
+      short: app config
+      settings:
+        CONF_FILE: prj.conf
+        BOARD: nucleo_l476rg
+        CMAKE_POLICY_DEFAULT_CMP0116: OLD
+        # ZEPHYR_MODULES: <path-to-module1>[;<path-to-module2>[...]]
