@@ -1,0 +1,22 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Docker Host (OpenOCD) launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/zephyr/zephyr.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "external",
+            "gdbTarget": "host.docker.internal:3333",
+            "device": "STM32L476RG",
+            "interface": "swd",
+            "showDevDebugOutput": false,
+            "runToMain": true,
+            "toolchainPrefix": "/opt/toolchains/zephyr-sdk-0.12.4/arm-zephyr-eabi/bin/arm-zephyr-eabi",
+        }
+    ]
+}

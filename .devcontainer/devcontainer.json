@@ -1,0 +1,40 @@
+// See https://aka.ms/vscode-remote/devcontainer.json for format details.
+{
+    "name": "Zephyr builder",
+    "image": "mrlisdim/zephyr_dev_container:v0.18.2-1",
+    // Add the IDs of any extensions you want installed in the array below.
+    "extensions": [
+        // C/C++ ext
+        "ms-vscode.cpptools",
+        // "llvm-vs-code-extensions.vscode-clangd",
+        // CMake tools
+        "twxs.cmake",
+        "ms-vscode.cmake-tools",
+        "cheshirekow.cmake-format",
+        // Debug
+        "webfreak.debug",
+        "marus25.cortex-debug",
+		"marus25.cortex-debug-dp-stm32l4",
+        // YAML support
+        "redhat.vscode-yaml",
+        // Zephyr DTS
+        "trond-snekvik.devicetree"
+    ],
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    // Cortex-debug plugin use ::1 ipv6 address so enable it 
+    "runArgs": [
+        "--sysctl",
+        "net.ipv6.conf.all.disable_ipv6=0"
+    ],
+    // "clangd.arguments": [
+	// 	"--compile-commands-dir=build",
+	// 	"-j=12",
+	// 	"--cross-file-rename",
+	// 	"--clang-tidy",
+	// 	"--background-index",
+	// 	// "--query-driver=arm-none-eabi-*",
+	// 	"--pch-storage=memory"
+	// ]
+}
